@@ -51,7 +51,7 @@ class MainCategory(models.Model):
     cid = ShortUUIDField(unique=True, length=10, max_length=30, prefix="cat", alphabet="abcdefghijklmnop1234567890")
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to=category_directory_path)
-    price = models.DecimalField(max_digits=99999999999999999, decimal_places=2, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     class Meta:
         verbose_name = "Main Category"
@@ -69,7 +69,7 @@ class SubCategory(models.Model):
     parent_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE, related_name='subcategories')
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to=category_directory_path)
-    price = models.DecimalField(max_digits=99999999999999999, decimal_places=2, null=True)
+    price = models.y(max_digits=10, decimal_places=2, null=True)
 
     class Meta:
         verbose_name = "Subcategory"
@@ -123,8 +123,8 @@ class Product(models.Model):
     url = models.URLField(null=True, blank=True)  # Add this line
 
     image = models.ImageField(upload_to=user_directory_path)
-    price = models.DecimalField(max_digits=99999999999999999, decimal_places=2)
-    old_price = models.DecimalField(max_digits=99999999999999999, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    old_price = models.DecimalField(max_digits=10, decimal_places=2)
     specification = models.TextField(null=True, blank=True)
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -220,7 +220,7 @@ class ExtraImages(models.Model):
 class DiscountCode(models.Model):
     code = models.CharField(max_length=50, unique=True)
     description = models.TextField(blank=True)
-    discount_amount = models.DecimalField(max_digits=6, decimal_places=2, help_text="Fixed discount amount")
+    discount_amount = models.DecimalField(max_digits=10, decimal_places=2, help_text="Fixed discount amount")
     discount_percentage = models.IntegerField(blank=True, null=True, help_text="Percentage discount, if applicable")
     valid_from = models.DateTimeField()
     valid_to = models.DateTimeField()
