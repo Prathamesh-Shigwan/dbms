@@ -69,7 +69,7 @@ class SubCategory(models.Model):
     parent_category = models.ForeignKey(MainCategory, on_delete=models.CASCADE, related_name='subcategories')
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to=category_directory_path)
-    price = models.y(max_digits=10, decimal_places=2, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     class Meta:
         verbose_name = "Subcategory"
