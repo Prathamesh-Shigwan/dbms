@@ -200,7 +200,7 @@ class ProductVariant(models.Model):
 
 class ExtraImages(models.Model):
     image = models.ImageField(upload_to=user_directory_path)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='extra_images')  # Update related_name
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='extra_images', default=1)  # Update related_name
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
